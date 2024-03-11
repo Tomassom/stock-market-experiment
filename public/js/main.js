@@ -1,6 +1,5 @@
 $(() => {
     // Global variables.
-    const Game = $('#g');
     let settings = {};
     let startGame = 0;
     let level = '';
