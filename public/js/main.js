@@ -13,7 +13,6 @@ $(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const gameID = searchParams.get('code') != null ? searchParams.get('code') : "4JWAexvbpoznYpFiDlG9";  
 
-
     // Check login state.
     const checkLogin = () => {
         const modal = $('#login-modal');
@@ -881,19 +880,31 @@ $(() => {
             //console.log(searchParams.get('experiment'));
             //console.log(searchParams.getAll('experiment'));
             //for (const param of searchParams) { console.log(param); }
+            
             /*
             firebase.firestore().collection("stocks")
             .get().then((querySnapshot) => {
                 if (!querySnapshot.empty) {
                     querySnapshot.forEach((doc) => {
 
-                        if ( doc.data().UID != 'utolso ')
-                        {
                             DB["delete"](`stocks/${doc.id}`,  doc.id);
-                        }
                     })
                 }
-            }); */
+            }); 
+
+            await firebase.firestore().collection("users")
+            .onSnapshot( (querySnapshot) => {
+                querySnapshot.forEach((info) => { 
+                    var jsonString = info.data();
+                    var jsonPretty = JSON.stringify(jsonString,null,2);   
+
+                    const container = $('#jsontest');
+                    container
+                    .html(jsonPretty);
+                })
+
+            });*/
+
 
         $('#experiment').hide();
         //gameIDCheck();
